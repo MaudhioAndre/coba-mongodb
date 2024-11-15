@@ -19,7 +19,7 @@ mongoose.connect(`${process.env.DB_LINK}`,{
 
 const db = mongoose.connection;
 db.on("error", (error) => console.log(error));
-db.once("open", () => console.log("Database Connected..."));
+db.once("open", () => console.log("Database Connected....."));
 
 app.use(cors());
 app.use(express.json());
