@@ -11,7 +11,7 @@ const app = express();
 //   `mongodb+srv://maudhioa:zJY8FfyqJAFDwnyt@coba-mongodb.3dgdr.mongodb.net/?retryWrites=true&w=majority&appName=coba-mongodb`
 // );
 
-mongoose.connect(`mongodb:${process.env.DB_LINK}`,{
+mongoose.connect(`${process.env.DB_LINK}`,{
     // mongoose.connect('mongodb://localhost:27017/fullstack_db',{
         useNewUrlParser: true,
         useUnifiedTopology: true
