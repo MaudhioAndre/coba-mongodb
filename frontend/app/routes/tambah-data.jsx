@@ -22,7 +22,7 @@ export default function tambahData() {
       .post(`${API_LINK}/users`, { name, email, gender })
       .then((res) => {
         console.log(res);
-        if (res.statusText === "Created") {
+        if (res.status === 201) {
           console.log("Insert success!");
           navigate("/");
         }

@@ -28,7 +28,7 @@ export default function UbahData() {
       .patch(`${API_LINK}/users/${id}`, { name, email, gender })
       .then((res) => {
         console.log(res);
-        if (res.statusText === "OK") {
+        if (res.status === 200) {
           console.log("Delete success!");
           navigate("/");
         }

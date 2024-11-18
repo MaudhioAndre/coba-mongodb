@@ -1,5 +1,5 @@
 import { json, type MetaFunction } from "@remix-run/node";
-import { useLoaderData, useRevalidator  } from "@remix-run/react";
+import { useLoaderData, useRevalidator } from "@remix-run/react";
 import { Link } from "@remix-run/react";
 import axios from "axios";
 
@@ -18,22 +18,22 @@ type datatype = {
 };
 
 type api_type = {
-  API_LINK : string
-}
+  API_LINK: string;
+};
 
 type typeCast = {
-  data : datatype[],
-  API_LINK : api_type
-}
+  data: datatype[];
+  API_LINK: api_type;
+};
 
 export default function Index() {
-  const {data} = useLoaderData() as typeCast;
+  const { data } = useLoaderData() as typeCast;
   console.log(data);
 
   const revalidator = useRevalidator();
 
   const { API_LINK } = useLoaderData() as typeCast;
-    console.log(API_LINK);
+  console.log(API_LINK);
 
   function handleDelete(id: string) {
     console.log("handleDelete");
@@ -42,7 +42,7 @@ export default function Index() {
       .delete(`${API_LINK}/users/${id}`)
       .then((res) => {
         console.log(res);
-        if(res.statusText === "OK"){
+        if (res.status === 200) {
           console.log("Delete success!");
           revalidator.revalidate();
         }
@@ -54,7 +54,9 @@ export default function Index() {
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <Link to="/tambah-data"><button>TAMBAH</button></Link>
+      <Link to="/tambah-data">
+        <button>TAMBAH</button>
+      </Link>
       <table className="table">
         <thead>
           <tr>
@@ -90,6 +92,6 @@ export default function Index() {
 export async function loader() {
   // const res = await fetch(`http://localhost:5000/users`);
   const res = await fetch(`${process.env.API_LINK}/users`);
-  const data = await res.json()
-  return {data, API_LINK: process.env.API_LINK};
+  const data = await res.json();
+  return { data, API_LINK: process.env.API_LINK };
 }
